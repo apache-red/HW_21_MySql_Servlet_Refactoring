@@ -4,12 +4,12 @@ package com.redcompany.red.libraryRef.controller.webController.webCommand.manage
 import com.redcompany.red.libraryRef.controller.webController.webCommand.manager.BasicCommandWeb;
 import com.redcompany.red.libraryRef.entity.Author;
 import com.redcompany.red.libraryRef.service.serviceCommand.factory.impl.ServiceFactoryWebCommand;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.redcompany.red.libraryRef.controller.webController.webCommand.util.WebConstants.REO_PARAM_ACTION;
 import static com.redcompany.red.libraryRef.controller.webController.webCommand.util.WebConstants.REO_PARAM_SHOW_AUTHORS;
 
 
@@ -22,7 +22,7 @@ public class ShowAllAuthorsCommandWeb implements BasicCommandWeb {
     @Override
     public void performAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        String show_authors = req.getParameter(REO_PARAM_SHOW_AUTHORS);
+        String show_authors = req.getParameter(REO_PARAM_ACTION);
         ServiceFactoryWebCommand serviceFactoryWebCommand = ServiceFactoryWebCommand.INSTANCE;
         if(show_authors  != null&& show_authors .equals(REO_PARAM_SHOW_AUTHORS)) {
             authorList =  serviceFactoryWebCommand.defineAction(req);
@@ -37,10 +37,7 @@ public class ShowAllAuthorsCommandWeb implements BasicCommandWeb {
                         "<input type=\"button\" value=\"<== Previous page\" onclick=\"history.back()\">\n" +
                         "</body>");
             }
-
         System.out.println("Error");
-
-
     }
 
 
